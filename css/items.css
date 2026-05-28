@@ -1,0 +1,59 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.item-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Small action buttons */
+.item-actions button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s ease;
+}
+
+/* Edit */
+.edit-btn {
+  background: #e3efff;
+  color: #2563eb;
+}
+
+.edit-btn:hover {
+  background: #d3e5ff;
+}
+
+.quantity-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.quantity-control label {
+  font-size: 10px;
+  margin-bottom: 2px;
+  color: #666;
+}
+
+.quantity-control input {
+  width: 60px;
+  padding: 4px;
+  font-size: 12px;
+  text-align: center;
+}

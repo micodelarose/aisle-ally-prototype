@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f3f4f6;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  max-width: 420px;
+  margin: auto;
+  background: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: #2f6b2f;
+  color: white;
+  padding: 20px;
+}
+
+.header p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.card {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+button {
+  background: #2f6b2f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.bottom-nav {
+  display: flex;
+  border-top: 1px solid #ddd;
+  background: #ffffff;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+
+  background: #ffffff;
+  color: #666666;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.tab-btn:hover {
+  background: #f2f2f2;
+}
+
+.tab-btn.active {
+  background: #2f6b2f;
+  color: white;
+}

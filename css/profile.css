@@ -1,0 +1,33 @@
+.targets-container {
+  margin-top: 25px;
+}
+
+.targets-title {
+  margin-bottom: 15px;
+  color: #2f6b2f;
+  font-size: 18px;
+}
+
+.target-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.target-card label {
+  display: block;
+
+  font-size: 14px;
+  color: #666;
+
+  margin-bottom: 8px;
+}
+
+.target-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2f6b2f;
+}

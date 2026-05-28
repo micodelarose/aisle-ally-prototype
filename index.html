@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GroceryOpt</title>
+
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/optimize.css">
+  <link rel="stylesheet" href="css/results.css">
+  <link rel="stylesheet" href="css/items.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1>Aisle Ally</h1>
+    <p>Grocery Optimization App</p>
+  </header>
+
+  <!-- CONTENT -->
+  <main id="content">
+
+    <!-- PROFILE TAB -->
+    <section id="profile-page" class="page active">
+      <h2>Profile</h2>
+
+      <div class="card">
+        <label>Age</label>
+        <input type="number" id="age">
+
+        <label>Weight (kg)</label>
+        <input type="number" id="weight">
+
+        <label>Height (cm)</label>
+        <input type="number" id="height">
+
+        <label>Sex</label>
+        <select id="sex">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label>Activity Level</label>
+        <select id="activity">
+            <option value="Sedentary">Sedentary</option>
+            <option value="Light">Light</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Very Active">Very Active</option>
+        </select>
+
+        <button id="generateTargetsBtn" type="button">
+          Generate Nutrition Targets
+        </button>
+
+        <div class="targets-container">
+
+  <h3 class="targets-title">
+    Nutritional Targets
+  </h3>
+
+  <div class="target-card">
+    <label>Daily Caloric Target</label>
+    <div class="target-value" id="dailyCalories">
+      --
+    </div>
+  </div>
+
+  <div class="target-card">
+    <label>Minimum Calories</label>
+    <div class="target-value" id="minCaloriesTarget">
+      --
+    </div>
+  </div>
+
+  <div class="target-card">
+    <label>Maximum Calories</label>
+    <div class="target-value" id="maxCaloriesTarget">
+      --
+    </div>
+  </div>
+
+  <div class="target-card">
+    <label>Protein (g/day)</label>
+    <div class="target-value" id="proteinTarget">
+      --
+    </div>
+  </div>
+
+  <div class="target-card">
+    <label>Fiber (g/day)</label>
+    <div class="target-value" id="fiberTarget">
+      --
+    </div>
+  </div>
+
+  <div class="target-card">
+    <label>Fat (g/day)</label>
+    <div class="target-value" id="fatTarget">
+      --
+    </div>
+  </div>
+
+</div>
+      </div>
+    </section>
+
+    <!-- OPTIMIZE TAB -->
+    <section id="optimize-page" class="page">
+
+  <h2>Optimize</h2>
+
+  <!-- CONSTRAINTS -->
+  <div class="card">
+
+    <h3 class="section-title">
+      Constraints
+    </h3>
+
+    <label>Budget (₱)</label>
+    <input type="number" id="budget">
+    
+    <label>Days</label>
+    <input type="number" id="days">
+    
+    <button id="updateTargetsBtn" onclick="updateNutritionTargets()" type="button">
+    Update Nutrition Targets
+    </button>
+    
+</div>
+
+<!-- NUTRITION TARGETS -->
+<div class="card">
+    
+    <h3 class="section-title">
+        Nutrition Targets
+    </h3>
+    
+    <label>Minimum Calories</label>
+    <input type="number" id="minCalories">
+    
+    <label>Maximum Calories</label>
+    <input type="number" id="maxCalories">
+    
+    <label>Protein (g/day)</label>
+    <input type="number" id="proteinTargetInput">
+    
+    <label>Fiber (g/day)</label>
+    <input type="number" id="fiberTargetInput">
+    
+    <label>Fat (g/day)</label>
+    <input type="number" id="fatTargetInput">
+    
+    
+
+  </div>
+
+  <!-- CATEGORY LIMITS -->
+  <div class="card">
+
+    <h3 class="section-title">
+      Category Limits
+    </h3>
+
+    <!-- PROTEIN -->
+    <div class="category-group">
+      <h4>Protein</h4>
+
+      <label>Minimum</label>
+      <input type="number" id="proteinMin">
+
+      <label>Maximum</label>
+      <input type="number" id="proteinMax">
+    </div>
+
+    <!-- VEGETABLES -->
+    <div class="category-group">
+      <h4>Vegetables</h4>
+
+      <label>Minimum</label>
+      <input type="number" id="vegetableMin">
+
+      <label>Maximum</label>
+      <input type="number" id="vegetableMax">
+    </div>
+
+    <!-- CARBOHYDRATES -->
+    <div class="category-group">
+      <h4>Carbohydrates</h4>
+
+      <label>Minimum</label>
+      <input type="number" id="carbMin">
+
+      <label>Maximum</label>
+      <input type="number" id="carbMax">
+    </div>
+
+    <!-- FATS -->
+    <div class="category-group">
+      <h4>Fats</h4>
+
+      <label>Minimum</label>
+      <input type="number" id="fatMin">
+
+      <label>Maximum</label>
+      <input type="number" id="fatMax">
+    </div>
+
+  </div>
+
+  <!-- RUN BUTTON -->
+    <button id="optimizeBtn" onclick="runOptimization()">
+    Run Optimization
+    </button>
+
+</section>
+
+    <!-- RESULTS TAB -->
+    <section id="results-page" class="page">
+
+  <h2>Results</h2>
+
+  <!-- SUMMARY -->
+  <div class="card">
+
+    <h3 class="section-title">
+      Optimization Summary
+    </h3>
+
+    <div class="result-stat">
+      <span>Total Cost</span>
+      <span id="totalCost">-- / --</span>
+    </div>
+
+    <div class="result-stat">
+      <span>Average Daily Calories</span>
+      <span id="avgCalories">-- / --</span>
+    </div>
+
+    <div class="result-stat">
+      <span>Average Daily Protein</span>
+      <span id="avgProtein">-- / --</span>
+    </div>
+
+    <div class="result-stat">
+      <span>Average Daily Fiber</span>
+      <span id="avgFiber">-- / --</span>
+    </div>
+
+    <div class="result-stat">
+      <span>Average Daily Fat</span>
+      <span id="avgFat">-- / --</span>
+    </div>
+
+    <div class="result-stat">
+      <span>Total Item Count</span>
+      <span id="itemCount">--</span>
+    </div>
+
+  </div>
+
+  <!-- SELECTED ITEMS -->
+  <div class="card">
+
+    <h3 class="section-title">
+      Selected Items
+    </h3>
+
+    <div id="selectedItemsContainer">
+
+      <!-- EXAMPLE ITEM -->
+      <div class="selected-item">
+        <div>
+          <div class="item-name">
+            --
+          </div>
+
+          <div class="item-details">
+            Quantity: --
+          </div>
+        </div>
+
+        <div class="item-price">
+          --
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+    <!-- ITEMS TAB -->
+  <!-- CATEGORY LISTS -->
+  <section id="items-page" class="page">
+
+  <h2>Items</h2>
+
+  <div class="card">
+    <h3>Items List</h3>
+    <div id="itemsContainer"></div>
+  </div>
+
+  <div class="card">
+    <h3>Add Item</h3>
+
+    <input id="itemName" placeholder="Item Name">
+    <input id="itemPrice" placeholder="Price">
+    <input id="itemCalories" placeholder="Calories">
+    <input id="itemProtein" placeholder="Protein">
+    <input id="itemFiber" placeholder="Fiber">
+    <input id="itemFat" placeholder="Fat">
+
+    <button onclick="saveItem()" type="button">Save Item</button>
+  </div>
+
+</section>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+
+    <button class="tab-btn active" data-page="profile-page">
+      Profile
+    </button>
+
+    <button class="tab-btn" data-page="optimize-page">
+      Optimize
+    </button>
+
+    <button class="tab-btn" data-page="results-page">
+      Results
+    </button>
+
+    <button class="tab-btn" data-page="items-page">
+      Items
+    </button>
+
+  </nav>
+
+</div>
+
+<script src="js/database.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/results.js"></script>
+<script src="js/optimize.js"></script>
+<script src="js/items.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
